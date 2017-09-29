@@ -11,7 +11,20 @@ get("/") do
 end
 
 get '/stores/new' do
-  "Hello World"
+  @brands = Brand.all
+  erb(:new_store)
+end
+
+post '/stores/new' do
+  store_brands = []
+  params.each do |param|
+    unless (param[0] == "captures" || param[0] == "name")
+      store_brands.push(Brand.find(param[0].to_i))
+    end
+  end
+  store = Store.create(name: params["name"])
+  store.brands.push(store_brands)
+  redirect "/"
 end
 
 get '/brands/new' do
