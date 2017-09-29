@@ -17,3 +17,8 @@ end
 get '/brands/new' do
   erb(:new_brand)
 end
+
+post '/brands/new' do
+  Brand.create({name: params["name"], price: params["price"].to_f})
+  redirect "/"
+end
