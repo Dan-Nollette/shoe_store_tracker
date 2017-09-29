@@ -1,6 +1,5 @@
 <h1>Store : <%=@store.name%></h1>
 <p>The "<%=@store.name%>" store carries the following brands :</p>
-<br>
 <% if @store.brands.length < 1%>
   <p>Sorry, no brands associated with the store at this time. :(</p>
 <% else %>
@@ -10,6 +9,7 @@
     <% end %>
   </ol>
 <% end %>
+
 <form class="" action="/stores/<%=@store.id%>" method="post">
   <input type="hidden" name="_method" value="patch">
   <div class="form-group">
@@ -21,10 +21,11 @@
       <input type="checkbox" name="<%=brand.id%>" value="<%=brand.name%>" <%= @store.brands.include?(brand) ? "checked" : "" %>><%=brand.name%><br>
     <% end %>
   </div>
+  <br>
   <button type="submit" class="btn">Submit</button>
 </form>
-
+<br>
 <form class="" action="/stores/<%=@store.id%>" method="post">
   <input type="hidden" name="_method" value="delete">
-  <button type="submit" class="btn">delete store</button>
+  <button type="submit" class="btn">Delete Store</button>
 </form>
