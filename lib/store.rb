@@ -12,5 +12,3 @@ private
   end
 
 end
-
- {:presence => true, :length => { :maximum => 50 }}

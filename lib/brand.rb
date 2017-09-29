@@ -4,7 +4,7 @@ class Brand < ActiveRecord::Base
   before_save(:upcase_name)
 
   def currency_string
-    if self.price.zero?
+    if self.price < 0.01 && self.price > -0.01
       return "0.00"
     end
     cents_string = (self.price.round(2) * 100).to_i.to_s

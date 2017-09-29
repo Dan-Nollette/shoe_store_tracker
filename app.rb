@@ -51,9 +51,6 @@ patch '/stores/:id' do
   brands = []
   params.each do |param|
     unless (param[0] == "id" || param[0] == "captures" || param[0] == "_method" || param[0] == "name")
-      puts "%%%%%%%%%%%%%"
-      puts param
-      puts param[0]
       brands.push(Brand.find(param[0].to_i))
     end
   end
