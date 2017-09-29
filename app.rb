@@ -40,3 +40,8 @@ get '/stores/:id' do
   @store = Store.find(params['id'])
   erb(:store)
 end
+
+get '/brands/:id' do
+  @brand = Brand.find(params['id'])
+  erb(:brand)
+end

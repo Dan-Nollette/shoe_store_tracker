@@ -53,3 +53,11 @@ describe('Go to a store', {:type => :feature}) do
     expect(page).to have_content('Oh, fish!')
   end
 end
+
+describe('Go to a brand page', {:type => :feature}) do
+  it('creates a brand and then routes to it\'s brand page') do
+    brand = Brand.create({name: "Athena"})
+    visit('/brands/' + brand.id.to_s)
+    expect(page).to have_content("Athena")
+  end
+end
