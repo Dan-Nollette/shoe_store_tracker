@@ -37,6 +37,7 @@ post '/brands/new' do
 end
 
 get '/stores/:id' do
+  @brands = Brand.all
   @store = Store.find(params['id'])
   erb(:store)
 end
@@ -44,4 +45,24 @@ end
 get '/brands/:id' do
   @brand = Brand.find(params['id'])
   erb(:brand)
+end
+
+patch '/stores/:id' do
+  brands = []
+  params.each do |param|
+    unless (param[0] == "id" || param[0] == "captures" || param[0] == "_method" || param[0] == "name")
+      puts "%%%%%%%%%%%%%"
+      puts param
+      puts param[0]
+      brands.push(Brand.find(param[0].to_i))
+    end
+  end
+  @store = Store.find(params['id'])
+  @store.update(name: params['name'], brands: brands)
+  redirect "/stores/#{@store.id.to_s}"
+end
+
+delete '/stores/:id' do
+  Store.find(params["id"].to_i).destroy
+  redirect "/"
 end

@@ -1,1 +1,30 @@
 <h1>Store : <%=@store.name%></h1>
+<p>The "<%=@store.name%>" store carries the following brands :</p>
+<br>
+<% if @store.brands.length < 1%>
+  <p>Sorry, no brands associated with the store at this time. :(</p>
+<% else %>
+  <ol>
+    <% @store.brands.each do |brand| %>
+      <li><%=brand.name%></li>
+    <% end %>
+  </ol>
+<% end %>
+<form class="" action="/stores/<%=@store.id%>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <div class="form-group">
+    <label for="name" >Store Name</label>
+    <input type="text" name="name" value="<%=@store.name%>" class="form-control">
+  </div>
+  <div class="">
+    <% @brands.each do |brand| %>
+      <input type="checkbox" name="<%=brand.id%>" value="<%=brand.name%>" <%= @store.brands.include?(brand) ? "checked" : "" %>><%=brand.name%><br>
+    <% end %>
+  </div>
+  <button type="submit" class="btn">Submit</button>
+</form>
+
+<form class="" action="/stores/<%=@store.id%>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit" class="btn">delete store</button>
+</form>
