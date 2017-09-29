@@ -35,3 +35,8 @@ post '/brands/new' do
   Brand.create({name: params["name"], price: params["price"].to_f})
   redirect "/"
 end
+
+get '/stores/:id' do
+  @store = Store.find(params['id'])
+  erb(:store)
+end
