@@ -1,0 +1,26 @@
+<h1>Shoe Store and Shoe Brand Tracker</h1>
+
+<h2>Stores:</h2><br>
+<% if @stores.any? %>
+  <ul>
+    <%@stores.each do |store|%>
+      <li><a href="stores/<%=store.id%>"><%store.name%></a></li>
+    <%end%>
+  </ul>
+<% else %>
+  <p>There are no stores added yet</p>
+<% end %>
+<a href="stores/new">Create a new Store</a>
+
+<h2>Brands:</h2>
+<% if @brands.any? %>
+  <ul>
+    <%@brands.each do |brand|%>
+      <li><a href="brands/<%=brand.id%>"><%brand.name%></a></li>
+    <%end%>
+  </ul>
+<% else %>
+  <p>There are no brands added yet</p>
+<% end %>
+
+<a href="brands/new">Create a new Brand</a>
